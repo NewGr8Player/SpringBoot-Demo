@@ -26,7 +26,11 @@ spring:
       host: 127.0.0.1
       port: 6379
 mybatis:
-  type-aliases-package: com.xavier.bean
+    type-aliases-package: com.xavier.bean
+jwt:
+    expire_time: 120000
+    secret: "MySecret"
+    header_name: "Token"
 
 pagehelper:
     helperDialect: mysql

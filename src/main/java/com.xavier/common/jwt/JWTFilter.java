@@ -4,6 +4,7 @@ import org.apache.shiro.authz.UnauthorizedException;
 import org.apache.shiro.web.filter.authc.BasicHttpAuthenticationFilter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -17,7 +18,15 @@ import java.io.IOException;
  * preHandle->isAccessAllowed->isLoginAttempt->executeLogin
  */
 public class JWTFilter extends BasicHttpAuthenticationFilter {
+
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
+
+	private static String HEADER_NAME;
+
+	@Value("${jwt.HEADER_NAME}")
+	public void setHeader_name(String header_name) {
+		JWTFilter.HEADER_NAME = header_name;
+	}
 
 	/**
 	 * 如果带有 token，则对 token 进行检查，否则直接通过
@@ -46,7 +55,7 @@ public class JWTFilter extends BasicHttpAuthenticationFilter {
 	@Override
 	protected boolean isLoginAttempt(ServletRequest request, ServletResponse response) {
 		HttpServletRequest req = (HttpServletRequest) request;
-		String token = req.getHeader("Token");
+		String token = req.getHeader(HEADER_NAME);
 		return token != null;
 	}
 
@@ -56,7 +65,7 @@ public class JWTFilter extends BasicHttpAuthenticationFilter {
 	@Override
 	protected boolean executeLogin(ServletRequest request, ServletResponse response) throws Exception {
 		HttpServletRequest httpServletRequest = (HttpServletRequest) request;
-		String token = httpServletRequest.getHeader("Token");
+		String token = httpServletRequest.getHeader(HEADER_NAME);
 		JWTToken jwtToken = new JWTToken(token);
 		// 提交给realm进行登入，如果错误他会抛出异常并被捕获
 		getSubject(request, response).login(jwtToken);

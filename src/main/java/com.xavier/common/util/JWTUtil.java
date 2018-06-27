@@ -5,6 +5,8 @@ import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTDecodeException;
 import com.auth0.jwt.interfaces.DecodedJWT;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 
 import java.io.UnsupportedEncodingException;
 import java.util.Date;
@@ -17,11 +19,23 @@ import java.util.Date;
  * @Date 2018-04-07
  * @Time 22:48
  */
+@Component
 public class JWTUtil {
-	// 过期时间 24 小时
-	private static final long EXPIRE_TIME = 60 * 24 * 60 * 1000;
-	// 密钥
-	private static final String SECRET = "SHIRO+JWT";
+
+
+	private static Long EXPIRE_TIME;/* Tocken 超时时间 */
+
+	private static String SECRET;/* 秘钥 */
+
+	@Value("${jwt.expire_time}")
+	public void setExpireTime(Long expireTime) {
+		EXPIRE_TIME = expireTime;
+	}
+
+	@Value("${jwt.secret}")
+	public void setSECRET(String SECRET) {
+		JWTUtil.SECRET = SECRET;
+	}
 
 	/**
 	 * 生成 token
@@ -35,7 +49,7 @@ public class JWTUtil {
 			Algorithm algorithm = Algorithm.HMAC256(SECRET);
 			// 附带username信息
 			return JWT.create()
-					.withClaim("username", username)
+					.withClaim("username", username)/* 载荷部分包含的信息 */
 					//到期时间
 					.withExpiresAt(date)
 					//创建一个新的JWT，并使用给定的算法进行标记
