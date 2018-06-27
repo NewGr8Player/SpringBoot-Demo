@@ -1,5 +1,7 @@
 package com.xavier.common.shiro;
 
+import com.sun.xml.internal.bind.v2.TODO;
+import com.xavier.common.jwt.JWTToken;
 import com.xavier.common.util.JWTUtil;
 import com.xavier.dao.UserMapper;
 import org.apache.shiro.authc.AuthenticationException;
@@ -65,6 +67,12 @@ public class CustomRealm extends AuthorizingRealm {
 	 */
 	@Override
 	protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
+		/**
+		 * TODO list above
+		 *  - 权限设置在这里配置获取
+		 *  - 使用Redis存储用户信息，
+		 *  - Redis降级处理
+		 */
 		String username = JWTUtil.getUsername(principals.toString());
 		SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
 		//获得该用户角色

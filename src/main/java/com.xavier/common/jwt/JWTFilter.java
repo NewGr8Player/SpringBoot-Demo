@@ -1,6 +1,5 @@
 package com.xavier.common.jwt;
 
-import com.xavier.common.shiro.JWTToken;
 import org.apache.shiro.authz.UnauthorizedException;
 import org.apache.shiro.web.filter.authc.BasicHttpAuthenticationFilter;
 import org.slf4j.Logger;
@@ -84,13 +83,13 @@ public class JWTFilter extends BasicHttpAuthenticationFilter {
 	}
 
 	/**
-	 * 将非法请求跳转到 /unauthorized/**
+	 * 将非法请求跳转到 /unauthorized/[信息]
 	 */
 	private void responseError(ServletResponse response, String message) {
 		try {
 			HttpServletResponse httpServletResponse = (HttpServletResponse) response;
 			//设置编码，否则中文字符在重定向时会变为空字符串
-			//message = URLEncoder.encode(message, "UTF-8");
+			//message = URLEncoder.encode(message, "UTF-8");//TODO 解决中文编码问题
 			httpServletResponse.sendRedirect("/unauthorized/" + message);
 		} catch (IOException e) {
 			logger.error(e.getMessage());

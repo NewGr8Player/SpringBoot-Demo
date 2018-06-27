@@ -1,4 +1,4 @@
-package com.xavier.common.shiro;
+package com.xavier.common.jwt;
 
 import org.apache.shiro.authc.AuthenticationToken;
 
