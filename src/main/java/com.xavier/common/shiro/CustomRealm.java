@@ -84,9 +84,11 @@ public class CustomRealm extends AuthorizingRealm {
 		Set<String> roleSet = new HashSet<>();
 		Set<String> permissionSet = new HashSet<>();
 		//需要将 role, permission 封装到 Set 作为 info.setRoles(), info.setStringPermissions() 的参数
-		roleSet.add(role);
-		permissionSet.add(rolePermission);
-		permissionSet.add(permission);
+
+		roleSet.add(role);/* 角色 */
+
+		permissionSet.add(rolePermission); /* 权限01 */
+		permissionSet.add(permission);/* 权限02 */
 		//设置该用户拥有的角色和权限
 		info.setRoles(roleSet);
 		info.setStringPermissions(permissionSet);
