@@ -13,11 +13,10 @@ import org.springframework.transaction.annotation.Transactional;
 public class UserServiceImpl implements UserService {
 
 	@Autowired
-	private UserMapper userDao;
+	private UserMapper userMapper;
 
 	@Override
 	public User searchById(String id) {
-		//return this.userDao.findById(id);
-		return this.userDao.selectById(id);
+		return this.userMapper.selectById(id);
 	}
 }
