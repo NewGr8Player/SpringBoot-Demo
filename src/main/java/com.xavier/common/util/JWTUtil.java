@@ -24,7 +24,7 @@ public class JWTUtil {
 	private static final String SECRET = "SHIRO+JWT";
 
 	/**
-	 * 生成 token, 5min后过期
+	 * 生成 token
 	 *
 	 * @param username 用户名
 	 * @return 加密的token

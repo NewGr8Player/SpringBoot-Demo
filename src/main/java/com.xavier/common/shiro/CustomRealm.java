@@ -1,6 +1,5 @@
 package com.xavier.common.shiro;
 
-import com.sun.xml.internal.bind.v2.TODO;
 import com.xavier.common.jwt.JWTToken;
 import com.xavier.common.util.JWTUtil;
 import com.xavier.dao.UserMapper;
