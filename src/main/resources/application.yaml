@@ -1,6 +1,5 @@
 server:
   port: 8081
-
 spring:
     datasource:
         name: test
@@ -31,13 +30,6 @@ jwt:
     expire_time: 120000
     secret: "MySecret"
     header_name: "Token"
-
-pagehelper:
-    helperDialect: mysql
-    reasonable: true
-    supportMethodsArguments: true
-    params: count=countSql
-
 logging:
     level:
         com.xavier: DEBUG

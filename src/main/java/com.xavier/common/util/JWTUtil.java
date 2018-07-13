@@ -23,9 +23,16 @@ import java.util.Date;
 public class JWTUtil {
 
 
-	private static Long EXPIRE_TIME;/* Tocken 超时时间 */
+	public static Long EXPIRE_TIME;/* Tocken 超时时间 */
 
-	private static String SECRET;/* 秘钥 */
+	public static String SECRET;/* 秘钥 */
+
+	public static String HEADER_NAME;/* Http header中存储Token的字段名 */
+
+	@Value("${jwt.header_name}")
+	public void setHeader_Name(String header_name) {
+		HEADER_NAME = header_name;
+	}
 
 	@Value("${jwt.expire_time}")
 	public void setExpireTime(Long expireTime) {
@@ -33,8 +40,8 @@ public class JWTUtil {
 	}
 
 	@Value("${jwt.secret}")
-	public void setSECRET(String SECRET) {
-		JWTUtil.SECRET = SECRET;
+	public void setSECRET(String secret) {
+		SECRET = secret;
 	}
 
 	/**

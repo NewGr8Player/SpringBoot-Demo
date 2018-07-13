@@ -18,8 +18,6 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * Created with IntelliJ IDEA
- *
  * @Author yuanhaoyue swithaoy@gmail.com
  * @Description 自定义 Realm
  * @Date 2018-04-09
@@ -27,12 +25,9 @@ import java.util.Set;
  */
 @Component
 public class CustomRealm extends AuthorizingRealm {
-	private final UserMapper userMapper;
 
 	@Autowired
-	public CustomRealm(UserMapper userMapper) {
-		this.userMapper = userMapper;
-	}
+	private UserMapper userMapper;
 
 	/**
 	 * 必须重写此方法，不然会报错

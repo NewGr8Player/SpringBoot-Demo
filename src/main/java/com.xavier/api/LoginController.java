@@ -12,14 +12,10 @@ import java.io.UnsupportedEncodingException;
 @RequestMapping("/auth")
 public class LoginController {
 
-	private final UserMapper userMapper;
-	private final ResultMap resultMap;
-
 	@Autowired
-	public LoginController(UserMapper userMapper, ResultMap resultMap) {
-		this.userMapper = userMapper;
-		this.resultMap = resultMap;
-	}
+	private UserMapper userMapper;
+	@Autowired
+	private ResultMap resultMap;
 
 	@PostMapping("/login")
 	public ResultMap login(@RequestParam("username") String username,
@@ -35,7 +31,7 @@ public class LoginController {
 	}
 
 	@GetMapping(path = "/unauthorized/{message}")
-	public ResultMap unauthorized(@PathVariable String message) throws UnsupportedEncodingException {
+	public ResultMap unauthorized(@PathVariable String message) {
 		return resultMap.success().code(401).message(message);
 	}
 }
