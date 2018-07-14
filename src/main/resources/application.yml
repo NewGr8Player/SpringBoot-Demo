@@ -21,9 +21,21 @@ spring:
         testOnReturn: false
         poolPreparedStatements: true
         maxOpenPreparedStatements: 20
+    cache:
+        type: redis
     redis:
-      host: 127.0.0.1
-      port: 6379
+        host: 192.168.140.130 # server host
+        password: 123456
+        port: 6379
+        #lettuce客户端
+        lettuce:
+          shutdown-timeout: 100ms
+          pool:
+              min-idle: 0
+              max-idle: 8
+              max-wait: -1ms
+              max-active: 8
+        timeout: 120000ms #必须保证timeout时间与jwt过期时间一致
 mybatis:
     type-aliases-package: com.xavier.bean
 jwt:
