@@ -18,13 +18,13 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * @Author yuanhaoyue swithaoy@gmail.com
- * @Description
- * @Date 2018-04-09
- * @Time 16:56
+ * Shiro配置
+ *
+ * @author NewGr8player
  */
 @Configuration
 public class ShiroConfig {
+	//TODO 将Shiro默认的Session存入Redis，以确保缓存机制可用
 	/**
 	 * 先走 filter ，然后 filter 如果检测到请求头存在 token，则用 token 去 login，走 Realm 去验证
 	 */
