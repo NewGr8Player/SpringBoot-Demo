@@ -24,8 +24,8 @@ spring:
     cache:
         type: redis
     redis:
-        host: 192.168.140.130 # server host
-        password: 123456
+        host: 127.0.0.1 # server host
+        password:
         port: 6379
         #lettuce客户端
         lettuce:
@@ -35,11 +35,10 @@ spring:
               max-idle: 8
               max-wait: -1ms
               max-active: 8
-        timeout: 120000ms #必须保证timeout时间与jwt过期时间一致
 mybatis:
     type-aliases-package: com.xavier.bean
 jwt:
-    expire_time: 120000
+    expire_time: 1200
     secret: "MySecret"
     header_name: "Token"
 logging:

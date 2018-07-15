@@ -12,6 +12,7 @@ import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
 import java.util.HashSet;
@@ -25,8 +26,14 @@ import java.util.Set;
 @Component
 public class CustomRealm extends AuthorizingRealm {
 
+    /**
+     * 此处使用 {@code @Lazy} 注解原因
+     * https://docs.spring.io/spring-framework/docs/4.0.0.RELEASE/javadoc-api/org/springframework/context/annotation/Lazy.html
+     * */
+    @Lazy
     @Autowired
     private UserMapper userMapper;
+    @Lazy
     @Autowired
     private JWTGen jwtGen;
 
@@ -70,23 +77,25 @@ public class CustomRealm extends AuthorizingRealm {
          */
         String username = jwtGen.getUsername(principals.toString());
         SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
-        //获得该用户角色
+        /* 获得该用户角色 */
         String role = userMapper.getRole(username);
-        //每个角色拥有默认的权限
+        /* 每个角色拥有默认的权限 */
         String rolePermission = userMapper.getRolePermission(username);
-        //每个用户可以设置新的权限
+        /* 每个用户可以设置新的权限 */
         String permission = userMapper.getPermission(username);
         Set<String> roleSet = new HashSet<>();
         Set<String> permissionSet = new HashSet<>();
-        //需要将 role, permission 封装到 Set 作为 info.setRoles(), info.setStringPermissions() 的参数
+        /* 需要将 role, permission 封装到 Set 作为 info.setRoles(), info.setStringPermissions() 的参数 *？
 
         roleSet.add(role);/* 角色 */
 
         permissionSet.add(rolePermission); /* 权限01 */
         permissionSet.add(permission);/* 权限02 */
-        //设置该用户拥有的角色和权限
+        /* 设置该用户拥有的角色和权限 */
         info.setRoles(roleSet);
         info.setStringPermissions(permissionSet);
         return info;
     }
+
+    /* 测试 */
 }
