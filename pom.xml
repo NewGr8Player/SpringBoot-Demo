@@ -31,6 +31,7 @@
         <jwt.version>3.2.0</jwt.version>
         <guava.version>18.0</guava.version>
         <lombok.version>1.18.0</lombok.version>
+        <springfox.verison>2.2.2</springfox.verison>
     </properties>
 
     <dependencies>
@@ -109,6 +110,20 @@
             <artifactId>lombok</artifactId>
             <version>${lombok.version}</version>
             <scope>provided</scope>
+        </dependency>
+        <!-- Swagger support -->
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger2</artifactId>
+            <version>${springfox.verison}</version>
+            <scope>compile</scope>
+        </dependency>
+        <!-- Swagger UI support -->
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger-ui</artifactId>
+            <version>${springfox.verison}</version>
+            <scope>compile</scope>
         </dependency>
         <!-- Spring Boot Test -->
         <dependency>
