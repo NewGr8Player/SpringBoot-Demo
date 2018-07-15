@@ -28,8 +28,9 @@ public class CustomRealm extends AuthorizingRealm {
 
     /**
      * 此处使用 {@code @Lazy} 注解原因
+     * 不适用会影响Redis缓存的正常使用
      * https://docs.spring.io/spring-framework/docs/4.0.0.RELEASE/javadoc-api/org/springframework/context/annotation/Lazy.html
-     * */
+     */
     @Lazy
     @Autowired
     private UserMapper userMapper;
@@ -70,10 +71,7 @@ public class CustomRealm extends AuthorizingRealm {
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
         /**
-         * TODO list above
-         *  - 权限设置在这里配置获取
-         *  - 使用Redis存储用户信息，
-         *  - Redis降级处理
+         * TODO 权限设置在这里配置获取
          */
         String username = jwtGen.getUsername(principals.toString());
         SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
@@ -85,7 +83,7 @@ public class CustomRealm extends AuthorizingRealm {
         String permission = userMapper.getPermission(username);
         Set<String> roleSet = new HashSet<>();
         Set<String> permissionSet = new HashSet<>();
-        /* 需要将 role, permission 封装到 Set 作为 info.setRoles(), info.setStringPermissions() 的参数 *？
+        /* 需要将 role, permission 封装到 Set 作为 info.setRoles(), info.setStringPermissions() 的参数 */
 
         roleSet.add(role);/* 角色 */
 

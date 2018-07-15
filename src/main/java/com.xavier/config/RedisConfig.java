@@ -4,7 +4,7 @@ package com.xavier.config;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.PropertyAccessor;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.springframework.beans.factory.annotation.Value;
+import com.xavier.common.jwt.JWTVars;
 import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.CachingConfigurerSupport;
 import org.springframework.cache.annotation.EnableCaching;
@@ -21,19 +21,21 @@ import java.time.Duration;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * redis-cache config
+ *
+ * @author NewGr8Player
+ */
 @Configuration
 @EnableCaching
 public class RedisConfig extends CachingConfigurerSupport {
-
-    @Value("${jwt.expire_time}")
-    private Long expireTime;
 
     @Bean
     public CacheManager cacheManager(RedisConnectionFactory redisConnectionFactory) {
         return new RedisCacheManager(
                 RedisCacheWriter.nonLockingRedisCacheWriter(redisConnectionFactory),
                 /* 默认策略，未配置的 key 会使用这个 */
-                this.getRedisCacheConfigurationWithTtl(expireTime),
+                this.getRedisCacheConfigurationWithTtl(JWTVars.EXPIRE_TIME),
                 /* 指定 key 策略 */
                 this.getRedisCacheConfigurationMap()
         );

@@ -55,7 +55,7 @@ public class ShiroConfig {
     @Bean
     public SecurityManager securityManager(CustomRealm customRealm) {
         DefaultWebSecurityManager securityManager = new DefaultWebSecurityManager();
-        // 设置自定义 realm.
+        /* 设置自定义 realm */
         securityManager.setRealm(customRealm);
 
         /*
@@ -76,8 +76,8 @@ public class ShiroConfig {
     @Bean
     public DefaultAdvisorAutoProxyCreator defaultAdvisorAutoProxyCreator() {
         DefaultAdvisorAutoProxyCreator defaultAdvisorAutoProxyCreator = new DefaultAdvisorAutoProxyCreator();
-        // 强制使用cglib，防止重复代理和可能引起代理出错的问题
-        // https://zhuanlan.zhihu.com/p/29161098
+        /* 强制使用cglib，防止重复代理和可能引起代理出错的问题 */
+        /* https://zhuanlan.zhihu.com/p/29161098 */
         defaultAdvisorAutoProxyCreator.setProxyTargetClass(true);
         return defaultAdvisorAutoProxyCreator;
     }

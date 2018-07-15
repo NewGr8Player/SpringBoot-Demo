@@ -6,6 +6,14 @@ import com.xavier.dao.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+
+/**
+ * Login Controller
+ *
+ * @author NewGr8Player
+ */
 @RestController
 @RequestMapping("/auth")
 public class LoginController {
@@ -32,6 +40,14 @@ public class LoginController {
 
     @GetMapping(path = "/unauthorized/{message}")
     public ResultMap unauthorized(@PathVariable String message) {
-        return resultMap.success().code(401).message(message);
+        String msg = "";
+        try {
+            msg = URLDecoder.decode(message, "UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+            msg = message;
+        } finally {
+            return resultMap.success().code(401).message(msg);
+        }
     }
 }

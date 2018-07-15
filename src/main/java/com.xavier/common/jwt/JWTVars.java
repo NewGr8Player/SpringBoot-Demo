@@ -5,11 +5,21 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class JWTVars {
-    public static Long EXPIRE_TIME;/* Tocken 超时时间 */
 
-    public static String SECRET;/* 秘钥 */
+    /**
+     * Tocken 超时时间
+     */
+    public static Long EXPIRE_TIME;
 
-    public static String HEADER_NAME;/* Http header中存储Token的字段名 */
+    /**
+     * 秘钥
+     */
+    public static String SECRET;
+
+    /**
+     * Http header中存储Token的字段名
+     */
+    public static String HEADER_NAME;
 
     @Value("${jwt.header_name}")
     public void setHeaderName(String headerNameame) {

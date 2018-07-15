@@ -24,10 +24,9 @@ spring:
     cache:
         type: redis
     redis:
-        host: 127.0.0.1 # server host
+        host: 127.0.0.1
         password:
         port: 6379
-        #lettuce客户端
         lettuce:
           shutdown-timeout: 100ms
           pool:
@@ -43,4 +42,4 @@ jwt:
     header_name: "Token"
 logging:
     level:
-        com.xavier: DEBUG
+        com.xavier: INFO

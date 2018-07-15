@@ -3,12 +3,12 @@ package com.xavier.common.jwt;
 import org.apache.shiro.authc.AuthenticationToken;
 
 /**
- * Created with IntelliJ IDEA
+ * <pre>
+ * JWTToken 对象
+ * 实现{@code org.apache.shiro.authc.AuthenticationToken}
+ * </pre>
  *
- * @Author yuanhaoyue swithaoy@gmail.com
- * @Description token
- * @Date 2018-04-09
- * @Time 16:54
+ * @author NewGr8Player
  */
 public class JWTToken implements AuthenticationToken {
     private String token;

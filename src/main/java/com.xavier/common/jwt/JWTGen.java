@@ -62,11 +62,11 @@ public class JWTGen {
     public boolean verify(String token, String username) {
         try {
             Algorithm algorithm = Algorithm.HMAC256(JWTVars.SECRET);
-            //在token中附带了username信息
+            /* 在token中附带了username信息 */
             JWTVerifier verifier = JWT.require(algorithm)
                     .withClaim("username", username)
                     .build();
-            //验证 token
+            /* 验证 token */
             verifier.verify(token);
             return true;
         } catch (Exception exception) {
