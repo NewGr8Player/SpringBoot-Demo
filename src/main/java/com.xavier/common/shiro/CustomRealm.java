@@ -28,7 +28,7 @@ public class CustomRealm extends AuthorizingRealm {
 
     /**
      * 此处使用 {@code @Lazy} 注解原因
-     * 不适用会影响Redis缓存的正常使用
+     * 不使用会影响Redis缓存的正常使用
      * https://docs.spring.io/spring-framework/docs/4.0.0.RELEASE/javadoc-api/org/springframework/context/annotation/Lazy.html
      */
     @Lazy
