@@ -1,51 +1,79 @@
 server:
-    host: 0.0.0.0
-    port: 8081
+  host: 0.0.0.0
+  port: 8081
 spring:
-    datasource:
-        name: test
+  datasource:
+    type: com.alibaba.druid.pool.xa.DruidXADataSource
+    druid:
+      db1:
+        name: db1
         url: jdbc:mysql://127.0.0.1:3306/blogx?characterEncoding=UTF-8&useSSL=true
         username: root
         password: root
-        type: com.alibaba.druid.pool.DruidDataSource
-        driver-class-name: com.mysql.jdbc.Driver
-        filters: stat
+        initialSize: 5
+        minIdle: 5
         maxActive: 20
-        initialSize: 1
         maxWait: 60000
-        minIdle: 1
         timeBetweenEvictionRunsMillis: 60000
-        minEvictableIdleTimeMillis: 300000
-        validationQuery: select 'x'
+        minEvictableIdleTimeMillis: 30000
+        validationQuery: SELECT 1
+        validationQueryTimeout: 10000
         testWhileIdle: true
         testOnBorrow: false
         testOnReturn: false
         poolPreparedStatements: true
-        maxOpenPreparedStatements: 20
-    cache:
-        type: redis
-    redis:
-        host: 127.0.0.1
-        password:
-        port: 6379
-        lettuce:
-            shutdown-timeout: 100ms
-            pool:
-                min-idle: 0
-                max-idle: 8
-                max-wait: -1ms
-                max-active: 8
+        maxPoolPreparedStatementPerConnectionSize: 20
+        filters: stat,wall
+        connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+        useGlobalDataSourceStat: true
+      db2:
+        name: db2
+        url: jdbc:mysql://192.168.187.209:3306/testa?characterEncoding=UTF-8&useSSL=true
+        username: root
+        password: sxkj0818web
+        initialSize: 5
+        minIdle: 5
+        maxActive: 20
+        maxWait: 60000
+        timeBetweenEvictionRunsMillis: 60000
+        minEvictableIdleTimeMillis: 30000
+        validationQuery: SELECT 1
+        validationQueryTimeout: 10000
+        testWhileIdle: true
+        testOnBorrow: false
+        testOnReturn: false
+        poolPreparedStatements: true
+        maxPoolPreparedStatementPerConnectionSize: 20
+        filters: stat,wall
+        connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+        useGlobalDataSourceStat: true
+  jta:
+    log-dir: classpath:tx-logs
+    transaction-manager-id: txManager
+  cache:
+    type: redis
+  redis:
+    host: 127.0.0.1
+    password:
+    port: 6379
+    lettuce:
+      shutdown-timeout: 100ms
+      pool:
+        min-idle: 0
+        max-idle: 8
+        max-wait: -1ms
+        max-active: 8
 mybatis:
-    type-aliases-package: com.xavier.bean
+  type-aliases-package: com.xavier.bean
 jwt:
-    expire_time: 1200
-    secret: "MySecret"
-    header_name: "Token"
+  expire_time: 1200
+  secret: "MySecret"
+  header_name: "Token"
 logging:
-    level:
-        com.xavier: INFO
+  level:
+    com.xavier: INFO
 springfox:
-    documentation:
-        swagger:
-            v2:
-                path: /api-docs
+  documentation:
+    swagger:
+      v2:
+        path: /api-docs

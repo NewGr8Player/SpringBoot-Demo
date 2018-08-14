@@ -1,6 +1,8 @@
 package com.xavier.service.impl;
 
 import com.xavier.bean.User;
+import com.xavier.common.db.DBTypeEnum;
+import com.xavier.common.db.DataSourceSwitch;
 import com.xavier.dao.UserMapper;
 import com.xavier.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +22,7 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserMapper userMapper;
 
+    @DataSourceSwitch(DBTypeEnum.db2)
     @Override
     public User searchById(String id) {
         return this.userMapper.selectById(id);

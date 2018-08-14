@@ -16,15 +16,24 @@ import java.io.Serializable;
  */
 @Getter
 @Setter
-@TableName(value = "t_user")
+@TableName(value = "tb_user")
 public class User implements Serializable {
 
-    @TableId(type = IdType.UUID)
-    private String id;
+	@TableId(type = IdType.UUID)
+	private String id;
 
-    @TableField
-    private String username;
+	@TableField("user_name")
+	private String username;
 
-    @TableField
-    private String password;
+	@TableField
+	private String password;
+
+	@Override
+	public String toString() {
+		return "User{" +
+				"id='" + id + '\'' +
+				", username='" + username + '\'' +
+				", password='" + password + '\'' +
+				'}';
+	}
 }
