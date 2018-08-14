@@ -47,9 +47,6 @@ spring:
         filters: stat,wall
         connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
         useGlobalDataSourceStat: true
-  jta:
-    log-dir: classpath:tx-logs
-    transaction-manager-id: txManager
   cache:
     type: redis
   redis:
