@@ -2,7 +2,9 @@ package com.xavier;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.cache.annotation.EnableCaching;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 /**
  * <ul >
@@ -15,7 +17,10 @@ import org.springframework.cache.annotation.EnableCaching;
  * @author NewGr8Player
  */
 @EnableCaching
-@SpringBootApplication
+@SpringBootApplication(exclude = {
+        DataSourceAutoConfiguration.class
+})
+@EnableTransactionManagement(order = 2)
 public class Application {
 
     public static void main(String[] args) {

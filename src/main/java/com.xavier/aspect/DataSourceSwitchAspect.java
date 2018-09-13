@@ -21,7 +21,7 @@ import java.util.Objects;
  * @author NewGr8Player
  */
 @Aspect
-@Order(-100)
+@Order(1)
 @Component
 public class DataSourceSwitchAspect {
 
