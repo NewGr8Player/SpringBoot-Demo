@@ -25,7 +25,7 @@ public class UserServiceImpl implements UserService {
 	@Autowired
 	private UserMapper userMapper;
 
-	@DataSourceSwitch(DBTypeEnum.db2)
+	//@DataSourceSwitch(DBTypeEnum.db2)
 	@Override
 	public User searchById(String id) {
 		return this.userMapper.selectById(id);

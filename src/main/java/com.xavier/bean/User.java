@@ -16,13 +16,13 @@ import java.io.Serializable;
  */
 @Getter
 @Setter
-@TableName(value = "tb_user")
+@TableName(value = "t_user")
 public class User implements Serializable {
 
 	@TableId(type = IdType.UUID)
 	private String id;
 
-	@TableField("user_name")
+	@TableField
 	private String username;
 
 	@TableField

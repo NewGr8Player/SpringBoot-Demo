@@ -29,7 +29,7 @@ public class SwaggerConfig {
 		AuthorizationScope[] authorizationScopes = {new AuthorizationScope("global", "accessEverything")};
 
 		return new Docket(DocumentationType.SWAGGER_2)
-				.groupName("ElasticSearch")
+				.groupName("SpringBoot-Demo")
 				.genericModelSubstitutes(DeferredResult.class)
 				.useDefaultResponseMessages(false)
 				.forCodeGeneration(false)
