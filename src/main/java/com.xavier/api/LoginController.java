@@ -3,6 +3,7 @@ package com.xavier.api;
 import com.xavier.common.ResultMap;
 import com.xavier.common.jwt.JWTGen;
 import com.xavier.dao.UserMapper;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,6 +26,7 @@ public class LoginController {
     @Autowired
     private JWTGen jwtGen;
 
+    @ApiOperation(value="登录")
     @PostMapping("/login")
     public ResultMap login(@RequestParam("username") String username,
                            @RequestParam("password") String password) {
